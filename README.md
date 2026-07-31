@@ -47,7 +47,7 @@ The interval is the honest headline. With 74 fraud cases in the test period, a s
 
 **Predicts its own degradation, then checks it.** Precision was expected to shift between periods purely because the fraud rate changed. The prediction, written down before the test scores existed, was 2.6%. The observed value was 2.4%.
 
-**Keeps a promise made early on.** Removing 1,081 duplicate rows was flagged in cell 9 as an assumption to be tested, not a cleaning step. It is tested at the end by re-running the whole pipeline with every row retained; the difference is smaller than the sampling noise.
+**Keeps a promise made early on.** Removing 1,081 duplicate rows was flagged at the time as an assumption to be tested, not a cleaning step. It is tested at the end by re-running the whole pipeline with every row retained; the difference is smaller than the sampling noise.
 
 ## Method in brief
 
