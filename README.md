@@ -1,12 +1,12 @@
 # Fraud detection under extreme class imbalance
 
-**Detecting card fraud when only 1 payment in 578 is fraudulent — and deciding what to do about it.**
+**Detecting card fraud when only 1 payment in 578 is fraudulent, and deciding what to do about it.**
 
 [![The visual summary](figures/poster-preview.png)](https://djamelzair.github.io/FraudImbalanceExampleRaboAplication/)
 
-📊 **[Read the visual summary](https://djamelzair.github.io/FraudImbalanceExampleRaboAplication/)** — a one-page walkthrough written for non-specialists, no statistics required.
+📊 **[Read the visual summary](https://djamelzair.github.io/FraudImbalanceExampleRaboAplication/)**. A one-page walkthrough written for non-specialists, no statistics required.
 
-📓 **[Read the full notebook](https://djamelzair.github.io/FraudImbalanceExampleRaboAplication/notebook.html)** — every chart interactive, all reasoning in order.
+📓 **[Read the full notebook](https://djamelzair.github.io/FraudImbalanceExampleRaboAplication/notebook.html)**. Every chart interactive, all the reasoning in order.
 
 ---
 
@@ -16,7 +16,7 @@ Most fraud-detection notebooks stop at a model and a score. The hard part of thi
 
 This notebook is about that second half.
 
-284,807 real card transactions over two days. 492 are fraudulent — 0.173%. A model that labels every transaction as legitimate scores **99.83% accuracy** and catches nothing. Every evaluation decision here follows from that single fact.
+284,807 real card transactions over two days. 492 are fraudulent, which is 0.173%. A model that labels every transaction as legitimate scores **99.83% accuracy** and catches nothing. Every evaluation decision here follows from that single fact.
 
 ## Result on the untouched test period
 
@@ -26,32 +26,33 @@ The final model and policy were locked before the test period was scored, and ev
 |---|---|
 | Fraud caught | **64 of 74** (86%) |
 | Legitimate customers held or declined | **114 of 56,672** (0.20%) |
-| Precision of the strictest response | **91%** — 50 of 55 declines were genuine fraud |
+| Legitimate customers sent a verification code | **2,439 of 56,672** (4.3%) |
+| Precision of the strictest response | **91%**. 50 of 55 declines were genuine fraud |
 | Average precision | **0.78**, 95% interval **[0.68, 0.86]** |
 
 The interval is the honest headline. With 74 fraud cases in the test period, a single number quoted to three decimal places would be false precision.
 
 ## What this notebook does that most do not
 
-**Reports uncertainty on every headline number.** Metrics carry bootstrap intervals. Model comparison uses a *paired* bootstrap, which shows the calibrated model beating the transparent one in 100% of resamples even though their individual intervals overlap heavily.
+Every headline number carries a bootstrap interval. Where two models are compared the bootstrap is *paired*, both scored on the same resampled transactions, which is how the calibrated model can be shown to win in 100% of resamples even though the two intervals overlap almost entirely.
 
-**Treats the two errors as economically different.** Missed fraud is costed at the value of that specific transaction. A false alert is costed per alert — and because nobody has said what that costs, it is swept across a plausible range rather than guessed once. The cost-optimal operating point moves more than twentyfold across that range, which is why this notebook does not ship a single "optimal" threshold.
+The two errors are not treated as interchangeable. Missed fraud is costed at the value of that specific transaction, because the data contains it. A false alert is costed per alert, and since nobody has told me what that is worth it gets swept across a plausible range instead of guessed once. Across that range the cost-optimal operating point moves more than twentyfold. Hold the assumption fixed and resample the data instead, and it still moves by a factor of two. So no single "optimal" threshold is shipped, because there isn't one.
 
-**Shows that the optimum is partly noise.** Holding the cost assumption fixed and resampling the same data still moves the cost-optimal alert volume by a factor of two.
+What is shipped is a graded response. Rather than approve or decline, the calibrated probability drives four actions: approve, automated verification, analyst review, decline. Matched on fraud caught, that cuts the cost of customer disruption by 98% against a single blocking threshold (measured on the validation period), because a wrong verification costs a customer a few seconds and a wrong decline costs them a refused payment at a till.
 
-**Replaces the binary decision with a graded one.** Rather than approve-or-decline, the calibrated probability drives four responses — approve, automated verification, analyst review, decline. Matched on fraud caught, this cuts the cost of customer disruption by 98% against a single blocking threshold, because a wrong verification costs a customer seconds and a wrong decline costs them a refused payment at a till.
+Resampling was tested rather than dismissed. SMOTE is the standard answer to imbalance in the published work on this dataset, so the notebook runs it head to head against class weighting under identical conditions, and reports what actually happened along with what it does to the calibration the cost model depends on.
 
-**Asks who bears the false alarms.** No protected attributes exist in this data, and the notebook says so rather than faking an audit. What it can test, it does: the smallest payments are stopped at **2.8× the average rate**. It then implements a cap on that disparity and prices it — one fraud case over the validation period.
+There is also a section on who carries the false alarms. No protected attributes exist in this data, and the notebook says so instead of faking an audit. What can be tested is tested: on the test period the smallest payments are held or declined at 2.3 times the average rate and the largest at 2.1 times, a U shape rather than the tidier story that small payments are penalised. On the earlier validation period the smallest were at 2.8 times and the largest close to normal, so the pattern is real but not stable. The notebook then implements a cap on the disparity and prices it at one fraud case.
 
-**Prices interpretability in fraud cases, not metrics.** At an equal budget of 50 alerts, the transparent logistic model catches 10 fewer frauds than the opaque one.
+Interpretability gets priced in fraud cases rather than in metrics. At an equal budget of 50 alerts on the validation period, the transparent logistic model catches 10 fewer frauds than the calibrated one. That is the form the trade-off should take in a conversation with risk and compliance.
 
-**Predicts its own degradation, then checks it.** Precision was expected to shift between periods purely because the fraud rate changed. The prediction, written down before the test scores existed, was 2.6%. The observed value was 2.4%.
+Finally, the notebook predicts its own degradation and then checks the prediction. Precision was expected to move between periods purely because the fraud rate changed. Written down before the test scores existed, the prediction was 2.6%; the observed value was 2.4%. In production that is what separates "the model is decaying" from "there is less fraud this month", two situations that demand opposite responses.
 
-**Keeps a promise made early on.** Removing 1,081 duplicate rows was flagged at the time as an assumption to be tested, not a cleaning step. It is tested at the end by re-running the whole pipeline with every row retained; the difference is smaller than the sampling noise.
+One more thing, because it is the habit rather than the result that matters: removing 1,081 duplicate rows was flagged early on as an assumption to be tested, not a cleaning step. It gets tested at the end by re-running the entire pipeline with every row retained. The difference is smaller than the sampling noise.
 
 ## Method in brief
 
-- **Chronological splits** (60/20/20 by time), never random — a fraud model scores transactions that happen *after* the ones it learned from.
+- **Chronological splits** (60/20/20 by time), never random, because a fraud model scores transactions that happen *after* the ones it learned from.
 - **Stability-aware feature selection**: features are kept on whether they contribute consistently across chronological folds, not on the importance a single fitted model assigns them.
 - **Leakage-safe pipelines** throughout; every scaler and imputer is fitted inside the fold.
 - **Chronological hyperparameter search** with the positive-class weight treated as a tunable decision rather than fixed to the imbalance ratio.
@@ -66,7 +67,7 @@ cd FraudImbalanceExampleRaboAplication
 pip install -r requirements.txt
 ```
 
-The dataset is 150 MB and is not stored in this repository. Download `creditcard.csv` into the repository root — see [`data/README.md`](data/README.md) for sources. Then:
+The dataset is 150 MB and is not stored in this repository. Download `creditcard.csv` into the repository root. See [`data/README.md`](data/README.md) for sources. Then:
 
 ```bash
 jupyter lab fraud_detection.ipynb
@@ -76,7 +77,7 @@ It runs top to bottom in roughly 40 minutes on a laptop. Outputs are committed, 
 
 ## Data
 
-284,807 anonymised card transactions from September 2013, collected by Worldline and the Machine Learning Group at Université Libre de Bruxelles. Features `V1`–`V28` are principal components published in place of the original variables for confidentiality; `Time` and `Amount` are unmodified.
+284,807 anonymised card transactions from September 2013, collected by Worldline and the Machine Learning Group at Université Libre de Bruxelles. Features `V1` to `V28` are principal components published in place of the original variables for confidentiality; `Time` and `Amount` are unmodified.
 
 > Dal Pozzolo, A., Caelen, O., Johnson, R.A., Bontempi, G. (2015). *Calibrating Probability with Undersampling for Unbalanced Classification.* IEEE Symposium on Computational Intelligence and Data Mining.
 

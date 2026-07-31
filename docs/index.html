@@ -200,6 +200,11 @@ strong{font-weight:700}
 .seg-block b,.seg-review b{color:#fff}
 :root[data-theme="dark"] .seg-block b,:root[data-theme="dark"] .seg-review b{color:#14161F}
 @media (prefers-color-scheme:dark){.seg-block b,.seg-review b{color:#14161F}}
+@media (max-width:38rem){
+  .bar-fine .seg b{display:none}
+  .bar .seg b{font-size:.82rem}
+}
+@media (max-width:34rem){.brk{display:none}}
 .legend{display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;margin-top:.75rem;
   font-family:var(--mono);font-size:.685rem;letter-spacing:.05em;color:var(--slate)}
 .swatch{width:.72rem;height:.72rem;flex:none;margin-right:.4rem;display:inline-block;
@@ -279,10 +284,10 @@ strong{font-weight:700}
     <div class="hero-grid">
       <div class="stack">
         <p class="eyebrow">Card fraud detection · A worked example</p>
-        <h1>Somewhere in here,<br>492 payments<br>are stolen.</h1>
+        <h1>Somewhere in here,<br class="brk">492 payments<br class="brk">are stolen.</h1>
         <p class="lede tight" style="margin-top:.5rem">Every dot is one real card payment. There are 284,807 of them,
           made over two days. The orange ones are fraud. Finding them is the easy part
-          of this problem — deciding what to do next is the hard part.</p>
+          of this problem. Deciding what to do next is the hard part.</p>
       </div>
     </div>
 
@@ -316,7 +321,7 @@ strong{font-weight:700}
       <p>That one fact governs everything that follows. Accuracy is the wrong measure
         here, and a model that looks excellent on paper can be worthless in practice.
         So the real question was never <em>how often is it right</em>. It was
-        <strong>what does it cost when it is wrong</strong> — and that depends
+        <strong>what does it cost when it is wrong</strong>, and that depends
         entirely on which way it is wrong.</p>
     </div>
   </div>
@@ -383,7 +388,7 @@ strong{font-weight:700}
         <p class="band-what">Nothing happens. The payment goes through as normal
           and the customer never knows a decision was made.</p>
         <p class="band-fig"><span class="num">54,129</span><span>payments</span></p>
-        <p class="band-fig"><span class="num">0</span><span>customers troubled</span></p>
+        <p class="band-fig"><span class="num">10</span><span>frauds missed</span></p>
       </div>
       <div class="band band-1">
         <p class="band-name">Verify</p>
@@ -407,7 +412,7 @@ strong{font-weight:700}
         <p class="band-fig"><span class="num">50</span><span>frauds caught</span></p>
       </div>
     </div>
-    <p class="fine col" style="margin-top:1rem">Figures are from the final test — a stretch of
+    <p class="fine col" style="margin-top:1rem">Figures are from the final test, a stretch of
       56,746 payments the model had never seen, and which was deliberately kept out
       of every decision until the very end.</p>
   </div>
@@ -442,15 +447,15 @@ strong{font-weight:700}
           <span><i class="swatch seg-missed"></i>Missed entirely</span>
         </p>
         <p class="callout">Two thirds of all fraud was stopped outright by the strictest
-          response — and of the 55 payments it refused, 50 really were fraud.</p>
+          response. Of the 55 payments it refused, 50 really were fraud.</p>
       </div>
 
       <div>
         <div class="alloc-head">
           <h3>Where the 56,672 genuine payments ended up</h3>
-          <p class="alloc-total">99.8% never noticed a thing</p>
+          <p class="alloc-total">99.8% never held or refused</p>
         </div>
-        <div class="bar" role="img" aria-label="Of 56,672 genuine payments: 54,119 approved silently, 2,439 sent a verification code, 109 briefly reviewed, and only 5 wrongly declined.">
+        <div class="bar bar-fine" role="img" aria-label="Of 56,672 genuine payments: 54,119 approved silently, 2,439 sent a verification code, 109 briefly reviewed, and only 5 wrongly declined.">
           <div class="seg seg-approve" style="flex:54119"><b>54,119</b></div>
           <div class="seg seg-verify" style="flex:2439"><b>2,439</b></div>
           <div class="seg seg-review" style="flex:109"></div>
@@ -459,8 +464,8 @@ strong{font-weight:700}
         <p class="legend">
           <span><i class="swatch seg-approve"></i>Untouched</span>
           <span><i class="swatch seg-verify"></i>Sent a code</span>
-          <span><i class="swatch seg-review"></i>Briefly held — 109</span>
-          <span><i class="swatch seg-block"></i>Wrongly declined — 5</span>
+          <span><i class="swatch seg-review"></i>Briefly held: 109</span>
+          <span><i class="swatch seg-block"></i>Wrongly declined: 5</span>
         </p>
         <p class="callout">The last two slivers are too small to see, which is the point.
           Only <strong>114 people</strong> were held or refused, and only
@@ -477,7 +482,8 @@ strong{font-weight:700}
       <div class="stat"><span class="num" style="color:var(--orange)">1 in 11,300</span>
         <span class="stat-label">genuine payments wrongly refused</span></div>
       <div class="stat"><span class="num" style="color:var(--orange)">98%</span>
-        <span class="stat-label">less customer disruption than a single cut-off</span></div>
+        <span class="stat-label">less customer disruption than a single cut-off
+          <em style="font-style:normal;opacity:.75">(earlier period)</em></span></div>
     </div>
   </div>
 </section>
@@ -489,14 +495,14 @@ strong{font-weight:700}
       <p class="eyebrow">How certain am I?</p>
       <h2>The honest answer is a range, not a number.</h2>
       <p>The test period contained 74 frauds. That is not many, and it means the score
-        would have come out differently on a different two days — through luck alone.</p>
+        would have come out differently on a different two days, through luck alone.</p>
       <p>So I measured that luck directly, by re-running the evaluation thousands of
         times on resampled versions of the same period. Reporting the single number
         without the range would be claiming a precision the data cannot support.</p>
     </div>
 
     <div class="gauge reveal">
-      <p class="eyebrow" style="color:var(--slate)">Overall quality score · higher is better</p>
+      <p class="eyebrow" style="color:var(--slate)">Average precision · higher is better</p>
       <div class="gauge-track">
         <div class="gauge-line"></div>
         <div class="gauge-range" style="left:68.5%;width:17.6%"></div>
@@ -511,12 +517,16 @@ strong{font-weight:700}
       <p class="callout" style="margin-top:1.1rem">The bar is the answer. Anything inside it
         is consistent with what I observed, and I would not defend the middle of it
         over the ends.</p>
+      <p class="fine" style="margin-top:.9rem">Average precision is the standard measure
+        for problems where the thing you are looking for is rare. It rewards putting real
+        fraud at the very top of the list, which is the only part of the ranking anyone
+        acts on.</p>
     </div>
 
     <div class="col stack reveal" style="margin-top:2.4rem">
       <p>This matters more than it sounds. If the score drops next month, is the model
         failing, or was it noise? Without knowing the width of that bar, nobody can
-        tell — and the two situations call for opposite responses.</p>
+        tell, and the two situations call for opposite responses.</p>
     </div>
   </div>
 </section>
@@ -530,10 +540,15 @@ strong{font-weight:700}
       <p>Overall, 0.2% of genuine payments were held or refused. But an average is not
         a person. So I split customers by the size of their payment and checked
         whether the burden fell evenly.</p>
-      <p>It did not. The very smallest payments were stopped at more than
-        <strong>twice the average rate</strong>. A refused payment is not equally
-        inconvenient for everyone, and small purchases tend to belong to people with
-        less room to absorb the trouble.</p>
+      <p>It did not, but not in the way I expected. The smallest payments were stopped
+        at <strong>2.3 times</strong> the average rate. So were the largest, at
+        <strong>2.1 times</strong>. Everything in the middle is left alone. The burden
+        sits at both ends of the range, not on one group.</p>
+      <p>That shape was also unstable. On the earlier stretch of data the smallest
+        payments were stopped 2.8 times more often than average while the largest were
+        close to normal. A tidier story would be that small payments are penalised, and
+        I could have told it by quoting one period and not the other. The data does not
+        support it.</p>
     </div>
 
     <div class="fair reveal" role="img" aria-label="Bar chart of how often genuine payments are stopped, by payment size, compared to the average rate. The smallest payments are stopped 2.3 times the average rate and the largest 2.1 times, while mid-sized payments are well below average.">
@@ -552,8 +567,8 @@ strong{font-weight:700}
     </div>
 
     <div class="col stack reveal" style="margin-top:2.2rem">
-      <p>Finding it is not the same as fixing it. So I also built the fix — a cap that
-        forces the rate back towards the average — and measured what it costs:
+      <p>Finding it is not the same as fixing it. So I also built the fix, a cap that
+        forces the rate back towards the average, and measured what it costs:
         <strong>one extra fraud gets through</strong>.</p>
       <p>I do not think that decision belongs to me. Whether equal treatment is worth
         one fraud is a question for the bank and its regulator. What a modeller owes

@@ -5,8 +5,8 @@ The notebook expects `creditcard.csv` in the **repository root**. It is roughly
 
 ## Where to get it
 
-- **Kaggle** — [Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
-- **OpenML** — dataset ID [1597](https://www.openml.org/d/1597)
+- **Kaggle**: [Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
+- **OpenML**: dataset ID [1597](https://www.openml.org/d/1597)
 
 From Python, without a Kaggle account:
 
@@ -28,7 +28,7 @@ export will load correctly.
 | Column | Meaning |
 |---|---|
 | `Time` | Seconds elapsed since the first transaction in the dataset |
-| `V1`–`V28` | Principal components published in place of the original features |
+| `V1` to `V28` | Principal components published in place of the original features |
 | `Amount` | Transaction value |
 | `Class` | 1 for fraud, 0 for legitimate |
 

@@ -4,6 +4,8 @@ pandas==2.2.2
 scikit-learn==1.5.1
 xgboost==2.0.3
 plotly==5.24.1
+kaleido==0.2.1          # static images, so charts show on GitHub
+imbalanced-learn==0.12.3  # SMOTE, for the resampling comparison
 scipy==1.13.1
 jupyterlab>=4.0
 nbformat>=5.10
