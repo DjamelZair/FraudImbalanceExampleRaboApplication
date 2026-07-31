@@ -2,9 +2,9 @@
 
 **Detecting card fraud when only 1 payment in 578 is fraudulent, and deciding what to do about it.**
 
-[![The visual summary](figures/poster-preview.png)](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/)
+[![The interactive read-out](figures/poster-preview.png)](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/)
 
-📊 **[Read the visual summary](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/)**. A one-page walkthrough written for non-specialists, no statistics required.
+📊 **[Open the interactive read-out](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/)**. Move the assumptions yourself: how many payments to stop, what an alert costs, how rare fraud is, and whether the answer survives a resample. Written for non-specialists, no statistics required.
 
 📓 **[Read the full notebook](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/notebook.html)**. Every chart interactive, all the reasoning in order.
 
