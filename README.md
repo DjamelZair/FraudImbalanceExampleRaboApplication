@@ -25,9 +25,9 @@ The final model and policy were locked before the test period was scored, and ev
 | | |
 |---|---|
 | Fraud caught | **64 of 74** (86%) |
-| Legitimate customers held or declined | **114 of 56,672** (0.20%) |
-| Legitimate customers sent a verification code | **2,439 of 56,672** (4.3%) |
-| Precision of the strictest response | **91%**. 50 of 55 declines were genuine fraud |
+| Genuine payments flagged for action | **114 of 56,672** (0.20%) |
+| Genuine payments given a light automated check | **2,439 of 56,672** (4.3%) |
+| Precision of the strongest band | **91%**. 50 of its 55 flags were genuine fraud |
 | Average precision | **0.78**, 95% interval **[0.68, 0.86]** |
 
 The interval is the honest headline. With 74 fraud cases in the test period, a single number quoted to three decimal places would be false precision.
@@ -38,11 +38,11 @@ Every headline number carries a bootstrap interval. Where two models are compare
 
 The two errors are not treated as interchangeable. Missed fraud is costed at the value of that specific transaction, because the data contains it. A false alert is costed per alert, and since nobody has told me what that is worth it gets swept across a plausible range instead of guessed once. Across that range the cost-optimal operating point moves more than twentyfold. Hold the assumption fixed and resample the data instead, and it still moves by a factor of two. So no single "optimal" threshold is shipped, because there isn't one.
 
-What is shipped is a graded response. Rather than approve or decline, the calibrated probability drives four actions: approve, automated verification, analyst review, decline. Matched on fraud caught, that cuts the cost of customer disruption by 98% against a single blocking threshold (measured on the validation period), because a wrong verification costs a customer a few seconds and a wrong decline costs them a refused payment at a till.
+What is shipped is a graded response. Rather than one cut-off, the calibrated probability drives four graded responses: no flag, a light automated check, human review, and act immediately. What acting means, holding a payment or blocking a card, is the bank's operational decision and the notebook does not presume it. Matched on fraud caught, that cuts the cost of customer disruption by 98% against a single blocking threshold (measured on the validation period), because a wrong verification costs a customer a few seconds and a wrong decline costs them a refused payment at a till.
 
 Resampling was tested rather than dismissed. SMOTE is the standard answer to imbalance in the published work on this dataset, so the notebook runs it head to head against class weighting under identical conditions, and reports what actually happened along with what it does to the calibration the cost model depends on.
 
-There is also a section on who carries the false alarms. No protected attributes exist in this data, and the notebook says so instead of faking an audit. What can be tested is tested: on the test period the smallest payments are held or declined at 2.3 times the average rate and the largest at 2.1 times, a U shape rather than the tidier story that small payments are penalised. On the earlier validation period the smallest were at 2.8 times and the largest close to normal, so the pattern is real but not stable. The notebook then implements a cap on the disparity and prices it at one fraud case.
+There is also a section on who carries the false alarms. No protected attributes exist in this data, and the notebook says so instead of faking an audit. What can be tested is tested: on the test period the smallest payments are flagged at 2.3 times the average rate and the largest at 2.1 times, a U shape rather than the tidier story that small payments are penalised. On the earlier validation period the smallest were at 2.8 times and the largest close to normal, so the pattern is real but not stable. The notebook then implements a cap on the disparity and prices it at one fraud case.
 
 Interpretability gets priced in fraud cases rather than in metrics. At an equal budget of 50 alerts on the validation period, the transparent logistic model catches 10 fewer frauds than the calibrated one. That is the form the trade-off should take in a conversation with risk and compliance.
 
