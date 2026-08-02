@@ -1,12 +1,22 @@
+<div align="center">
+
 # Fraud detection under extreme class imbalance
 
-**Detecting card fraud when only 1 payment in 578 is fraudulent, and deciding what to do about it.**
+### 👉 &nbsp;[**OPEN THE LIVE INTERACTIVE DEMO**](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/)&nbsp; 👈
 
-[![The interactive read-out](figures/poster-preview.png)](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/)
+[![Open the live interactive demo](https://img.shields.io/badge/%E2%96%B6%20%20OPEN%20THE%20LIVE%20INTERACTIVE%20DEMO%20%20%E2%86%92-F36717?style=for-the-badge&labelColor=2C3696)](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/)
 
-📊 **[Open the interactive read-out](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/)**. Move the assumptions yourself: how many payments to stop, what an alert costs, how rare fraud is, and whether the answer survives a resample. Written for non-specialists, no statistics required.
+**Detecting card fraud when only 1 payment in 578 is fraudulent — and deciding what to do about it.**
 
-📓 **[Read the full notebook](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/notebook.html)**. Every chart interactive, all the reasoning in order.
+<a href="https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/"><img src="figures/poster-preview.png" alt="The interactive read-out — click to open the live page" width="840"></a>
+
+### ☝️ That screenshot is the real thing — it's **live and interactive**.<br>[**Click it, or click here, to open the page →**](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/)
+
+Move the assumptions yourself — how many payments to stop, what an alert costs, how rare fraud is — and watch who pays for each choice. No statistics required.
+
+📓 [Read the full notebook](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/notebook.html) &nbsp;·&nbsp; 💻 source code below
+
+</div>
 
 ---
 
@@ -87,4 +97,11 @@ Built as a worked example for a Rabobank application. The colour palette was cho
 
 ---
 
+<div align="center">
+
+### ▶ &nbsp;[**Open the live interactive demo →**](https://djamelzair.github.io/FraudImbalanceExampleRaboApplication/)
+
 Djamel Zair · [github.com/DjamelZair](https://github.com/DjamelZair)
+
+</div>
+

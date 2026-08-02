@@ -102,7 +102,7 @@
 .statcard .row{display:flex;flex-direction:column;gap:.1rem}
 .statcard .n{font-family:var(--display);font-weight:900;font-size:2.4rem;
   line-height:.92;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.statcard .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.11em;
+.statcard .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.11em;
   text-transform:uppercase;opacity:.86}
 .statcard .rule{height:1px;background:rgba(255,255,255,.28)}
 .statcard .hi{color:var(--card-hi)}
@@ -140,7 +140,7 @@ section.tint{background:var(--wash);border-block:1px solid var(--rule)}
 .built b{font-family:var(--display);font-weight:900;color:var(--flag);
   font-variant-numeric:tabular-nums}
 
-.eyebrow{font-family:var(--mono);font-size:.67rem;font-weight:700;letter-spacing:.16em;
+.eyebrow{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:.6rem}
 :root[data-theme="dark"] .eyebrow{color:var(--blue)}
 .eyebrow::after{content:"";flex:1;height:2px;background:var(--blue);opacity:.28;min-width:1.5rem}
@@ -158,7 +158,7 @@ h4{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.12em;
   letter-spacing:-.03em;line-height:.9}
 strong{font-weight:700}
 .assumed{font-style:italic}
-mark{background:var(--amber-wash);color:inherit;padding:.05em .25em}
+mark{background:var(--blue-wash);color:var(--ink);padding:.04em .3em;border-radius:.25em}
 
 /* ---------- explainer ---------- */
 details.explain{margin-top:.9rem;border:1px solid var(--blue);border-left-width:4px;
@@ -184,15 +184,15 @@ details.explain summary:focus-visible{outline:2px solid var(--flag-bright);outli
 
 /* ---------- try-this nudge ---------- */
 .nudge{margin-top:1rem;display:flex;gap:.7rem;align-items:flex-start;
-  background:var(--amber-wash);border-left:4px solid var(--amber);padding:.75rem .9rem;
+  background:var(--amber-wash);padding:.75rem .9rem;
   font-size:.95rem;line-height:1.55}
-.nudge b{font-family:var(--mono);font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;
+.nudge b{font-family:var(--mono);font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;
   color:var(--amber);display:block;margin-bottom:.15rem}
 :root[data-theme="dark"] .nudge{color:var(--ink)}
 
 /* ---------- haystack ---------- */
 .haystack{position:relative;margin-top:1.6rem;border:1px solid var(--rule);
-  background:var(--raised);box-shadow:var(--shadow)}
+  background:var(--raised)}
 .haystack canvas{display:block;width:100%;height:clamp(200px,26vw,300px)}
 .hbar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem 1.4rem;
   padding:.65rem .9rem;border-top:1px solid var(--rule);font-family:var(--mono);
@@ -203,8 +203,7 @@ details.explain summary:focus-visible{outline:2px solid var(--flag-bright);outli
 .d-fraud{background:var(--flag-bright)}
 
 /* ---------- console ---------- */
-.console{margin-top:1.6rem;border:1px solid var(--rule-strong);background:var(--raised);
-  box-shadow:var(--shadow)}
+.console{margin-top:1.6rem;border:1px solid var(--rule-strong);background:var(--raised)}
 .console-head{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:baseline;
   justify-content:space-between;padding:.85rem clamp(1rem,2.5vw,1.6rem);
   border-bottom:2px solid var(--blue);background:var(--sunk)}
@@ -221,7 +220,7 @@ details.explain summary:focus-visible{outline:2px solid var(--flag-bright);outli
 .ctrl-value em{font-style:normal;font-family:var(--body);font-size:.9rem;font-weight:400;
   color:var(--ink-soft)}
 .ctrl-ends{display:flex;justify-content:space-between;font-family:var(--mono);
-  font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);
+  font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);
   margin-top:-.35rem}
 
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2.6rem;
@@ -260,11 +259,11 @@ input[type=range]:focus-visible{outline:3px solid var(--blue);outline-offset:4px
 
 /* ---------- charts ---------- */
 figure.chart{margin-top:1.3rem;border:1px solid var(--rule);background:var(--raised);
-  padding:1rem clamp(.8rem,2vw,1.3rem) .85rem;box-shadow:var(--shadow)}
+  padding:1rem clamp(.8rem,2vw,1.3rem) .85rem}
 .chart svg{display:block;width:100%;height:auto;overflow:visible}
 .chart-title{font-family:var(--display);font-weight:900;font-size:.95rem;color:var(--blue);
   margin-bottom:.15rem}
-.chart-sub{font-family:var(--mono);font-size:.68rem;color:var(--slate);letter-spacing:.04em;
+.chart-sub{font-family:var(--mono);font-size:.7rem;color:var(--slate);letter-spacing:.04em;
   margin-bottom:.7rem}
 .axis{stroke:var(--rule-strong);stroke-width:1}
 .tick.hot{fill:var(--flag)}
@@ -349,9 +348,16 @@ a.btn{text-decoration:none;display:inline-block}
 </div>
 
 <header class="wrap" style="padding-top:clamp(2rem,4vw,3rem)">
+ <div class="applock" style="display:flex;justify-content:flex-end;align-items:center;gap:.75rem;margin-bottom:1.5rem">
+  <div style="text-align:right;font-family:var(--mono);line-height:1.3">
+   <span style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue)">Data Scientist &middot; External Fraud</span>
+   <span style="display:block;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;color:var(--slate)">Early Career Program &mdash; Application</span>
+  </div>
+  <img src="figures/rabobank.png" alt="Rabobank" style="height:40px;width:auto;background:#fff;padding:.34rem .55rem;border-radius:.5rem;box-shadow:var(--shadow)">
+ </div>
  <div class="hero-grid">
   <div class="stack">
-    <p class="eyebrow">A worked example for the Data Scientist External Fraud vacancy at Rabobank</p>
+    <p class="eyebrow">A worked example, built end to end</p>
     <h1>Where do you<br class="brk">draw the line?</h1>
     <p class="lede col" style="margin-top:.4rem">Every dot below is one real card
       payment. There are 284,807 of them, made over two days, and 492 are fraud.</p>
@@ -409,6 +415,11 @@ a.btn{text-decoration:none;display:inline-block}
     <div class="col stack">
       <p class="eyebrow">Where the numbers come from</p>
       <h2>Two days of card payments, unedited.</h2>
+      <aside class="rail">
+        <p class="eyebrow">Provenance</p>
+        <p class="fine" style="margin-top:.7rem">Collected by <strong>Worldline</strong> with the <strong>Machine Learning Group at the Université Libre de Bruxelles</strong>.</p>
+        <p class="fine" style="margin-top:.55rem">A public research benchmark — one of the most studied fraud datasets there is, so the results here can be checked against the wider literature.</p>
+      </aside>
       <p>This is not simulated data. It is 284,807 genuine card transactions made by
         European cardholders over two days in September 2013, collected by Worldline
         and the Machine Learning Group at the Université Libre de Bruxelles, and
@@ -432,6 +443,10 @@ a.btn{text-decoration:none;display:inline-block}
 
     <div class="col stack" style="margin-top:1.8rem">
       <h3>You cannot see what anyone bought</h3>
+      <aside class="rail">
+        <div class="railstat"><b>28</b><span>columns hidden behind a PCA transform, labelled only <strong>V1–V28</strong> — unreadable by design.</span></div>
+        <div class="railstat" style="margin-top:1.5rem;border-left-color:var(--blue)"><b style="color:var(--blue)">2</b><span>fields kept in the clear: the <strong>amount</strong> and the <strong>time</strong> of each payment.</span></div>
+      </aside>
       <p>Payment records are sensitive, so the data was deliberately made
         unidentifiable before release. Only two fields survive in their original form:
         the <strong>amount</strong> of each payment, and the <strong>time</strong> it
@@ -476,6 +491,17 @@ a.btn{text-decoration:none;display:inline-block}
         <a href="https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud">Kaggle</a>.
         Collected during a research collaboration between Worldline and the Machine
         Learning Group at ULB.</p>
+      <p style="margin-top:.5rem"><strong>Methods, grounded in the literature.</strong>
+        The realistic evaluation used here — training and testing across time rather than
+        on a shuffled split — follows Dal Pozzolo, A., Boracchi, G., Caelen, O., Alippi,
+        C., Bontempi, G. (2018). <em>Credit Card Fraud Detection: A Realistic Modeling
+        and a Novel Learning Strategy.</em> IEEE Transactions on Neural Networks and
+        Learning Systems, 29(8), 3784–3797.
+        <a href="https://doi.org/10.1109/TNNLS.2017.2736643">doi:10.1109/TNNLS.2017.2736643</a>.
+        The class-imbalance handling (calibrated scoring with undersampling) builds on
+        He, H., Garcia, E.A. (2009). <em>Learning from Imbalanced Data.</em> IEEE
+        Transactions on Knowledge and Data Engineering, 21(9), 1263–1284.
+        <a href="https://doi.org/10.1109/TKDE.2008.239">doi:10.1109/TKDE.2008.239</a>.</p>
     </div>
   </div>
 </section>
@@ -903,7 +929,6 @@ a.btn{text-decoration:none;display:inline-block}
 
 <footer class="wrap" style="padding-block:clamp(2.4rem,5vw,4rem);border-top:1px solid var(--rule)">
   <div class="col stack">
-    <p class="eyebrow">The full working</p>
     <h3 style="font-size:1.25rem">Every number here comes out of the notebook.</h3>
     <p style="font-size:.97rem;color:var(--ink-soft)">The model, the four bands and the
       cost analysis are all built and argued there, including the things that did not
@@ -916,6 +941,7 @@ a.btn{text-decoration:none;display:inline-block}
     <p class="fine" style="margin-top:1.4rem">Data: 284,807 anonymised card transactions
       collected in September 2013 by Worldline and the Machine Learning Group at the
       Université Libre de Bruxelles. Dal Pozzolo et al., 2015. Djamel Zair, 2026.</p>
+    <p class="fine" style="margin-top:.6rem">Independent worked example prepared for a job application. Not affiliated with, authorised by, or endorsed by Rabobank; the Rabobank name and logo remain the property of Coöperatieve Rabobank U.A.</p>
   </div>
 </footer>
 </div>
