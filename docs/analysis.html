@@ -375,6 +375,16 @@ a.btn{text-decoration:none;display:inline-block}
       payments. On a period it had never seen it flags 64 of the 74 frauds, and the
       honest summary of its accuracy is a range, <b>0.68 to 0.86</b>, rather than a
       single number.</p>
+      <div style="max-width:35rem;margin:16px 0 2px" aria-hidden="true">
+        <div style="height:10px;border-radius:999px;background:var(--sunk);position:relative">
+          <span style="position:absolute;top:0;bottom:0;left:36%;right:28%;background:var(--flag);border-radius:999px"></span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--slate);margin-top:7px">
+          <span><b style="color:var(--flag)">0.68</b> worst plausible</span>
+          <span>average precision &middot; 95% interval</span>
+          <span><b style="color:var(--flag)">0.86</b> best plausible</span>
+        </div>
+      </div>
   </div>
 
   <aside class="statcard rail">
@@ -591,12 +601,6 @@ a.btn{text-decoration:none;display:inline-block}
         <details class="explain">
           <summary>What am I actually looking at?</summary>
           <div class="explain-body">
-            <p>The model does not decide anything on its own. It reads each payment and
-              gives it a risk score between 0 and 1, where 1 means "almost certainly
-              fraud". Sort all 56,746 payments by that score and you get a queue, most
-              suspicious at the top.</p>
-            <p>The slider sets how far down that queue you go. Everything above your line
-              gets flagged for someone to act on. Everything below is left alone.</p>
             <dl>
               <dt>Flagged</dt><dd>The model has raised its hand about this payment. What
                 happens next is the bank's call.</dd>
@@ -780,9 +784,6 @@ a.btn{text-decoration:none;display:inline-block}
     <details class="explain col">
       <summary>What is being reshuffled, and why does it matter?</summary>
       <div class="explain-body">
-        <p>The same two days are resampled: some payments get counted twice, others not
-          at all, in the way a different two days might plausibly have turned out. Then
-          the cheapest flagging level is worked out again from scratch on that version.</p>
         <p>If the answer were solid, every dot would land in the same place. They do not.
           They scatter across a wide range, and the cost assumption has not been touched,
           so this spread is luck alone.</p>
