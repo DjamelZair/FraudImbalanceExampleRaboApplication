@@ -412,11 +412,11 @@ a.btn{text-decoration:none;display:inline-block}
   </figure>
 
   <div class="cite col" style="margin-top:1.1rem">
-    <p><strong>A note on wording.</strong> The model <strong>flags</strong> a payment.
+    <details class="explain"><summary>A note on wording</summary><div class="explain-body"><p><strong>A note on wording.</strong> The model <strong>flags</strong> a payment.
       It does not block anything and it does not decline anything. What a bank then does
       with a flag, hold the payment, block the card, send a code, telephone the customer,
       is an operational decision that belongs to the bank, not to the model. So this page
-      says "flag" and "take action" and deliberately stops there.</p>
+      says "flag" and "take action" and deliberately stops there.</p></div></details>
   </div>
 </header>
 
@@ -460,14 +460,14 @@ a.btn{text-decoration:none;display:inline-block}
         unidentifiable before release. Only two fields survive in their original form:
         the <strong>amount</strong> of each payment, and the <strong>time</strong> it
         happened, counted in seconds from the first transaction in the file.</p>
-      <p>Everything else, twenty-eight further columns, has been put through a
+      <details class="explain"><summary>What V1 to V28 actually are</summary><div class="explain-body"><p>Everything else, twenty-eight further columns, has been put through a
         mathematical transformation that scrambles the original details into anonymous
         numbers called <mark>V1 to V28</mark>. Those numbers still carry the patterns a
         model needs, but no one can read a merchant, a location or a cardholder back
         out of them. It is a real constraint rather than a technicality, and it shows up
         twice on this page: the model can be accurate, but it cannot explain itself in
         plain language, and there is nothing in the file about who any of these
-        customers are.</p>
+        customers are.</p></div></details>
     </div>
 
     <details class="explain col">
@@ -525,12 +525,12 @@ a.btn{text-decoration:none;display:inline-block}
         <strong>99.83%</strong> of the time and catches nothing at all. So accuracy is
         the wrong question here. The real question is what it costs when you are wrong,
         and that depends entirely on which way you are wrong.</p>
-      <p>The model gives every payment a risk score and sorts them, most suspicious
+      <details class="explain"><summary>How the score works, and what it was tested on</summary><div class="explain-body"><p>The model gives every payment a risk score and sorts them, most suspicious
         first. All you have to decide is how far down that list to act. Everything below
         updates from the real test period: 56,746 payments the model had never seen
         while it was being built, split off by date rather than at random, because a
         fraud model always scores payments that happen after the ones it learned from.
-        The four bands were fixed on an earlier period, and this one was scored once.</p>
+        The four bands were fixed on an earlier period, and this one was scored once.</p></div></details>
       <div class="nudge rail">
         <span><b>Try this first</b>Drag the orange handle slowly from left to right and
           watch the two rows of squares underneath. The solid orange row is fraud you
@@ -639,9 +639,9 @@ a.btn{text-decoration:none;display:inline-block}
       <p>People say a model is "optimised" as though optimal were a property of the
         model. It is not. To call any setting best you first have to say what a flag
         costs you and what a missed fraud costs you.</p>
-      <p>The missed fraud is easy, because the money is right there in the data. The cost
+      <details class="explain"><summary>Where the cost of a flag comes from</summary><div class="explain-body"><p>The missed fraud is easy, because the money is right there in the data. The cost
         of a flag is not in the data at all. Somebody has to assume it. So here it is,
-        on a slider, where you can see it.</p>
+        on a slider, where you can see it.</p></div></details>
       <div class="nudge rail">
         <span><b>Try this</b>Drag the cost from one euro up to two hundred. Watch the
           lowest point of the curve slide sideways. That lowest point is what somebody
@@ -831,9 +831,9 @@ a.btn{text-decoration:none;display:inline-block}
             people in that group are flagged twice as often as average.</dd>
           <dt>Orange bars</dt><dd>Groups flagged clearly more often than average.</dd>
         </dl>
-        <p>Why payment size and not something more direct? No age, no income, no
+        <details class="explain"><summary>Why payment size, and nothing else</summary><div class="explain-body"><p>Why payment size and not something more direct? No age, no income, no
           location. There is nothing else in the file to split people by, and payment
-          size is only a rough stand-in for how much someone has to spare.</p>
+          size is only a rough stand-in for how much someone has to spare.</p></div></details>
       </div>
     </details>
   </div>
