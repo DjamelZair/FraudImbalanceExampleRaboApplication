@@ -374,14 +374,10 @@ a.btn{text-decoration:none;display:inline-block}
 </div></div>
 
 <section class="intro-body"><div class="wrap">
-    <p class="lede col">Finding the fraudulent ones turns out to be the easy part. The hard
-      question is what happens next, because <strong>you cannot catch more fraud without
-      flagging more genuine payments alongside it</strong>. Flag too few and money walks
-      out of the door. Flag too many and you are interrupting people who did nothing wrong.</p>
-    <p class="col">There is no setting that avoids both. On this page you make that
-      choice yourself, against the model's actual scores, and see exactly what each
-      decision costs. <strong>Drag the controls. Nothing here is a mock-up.</strong></p>
-    <p class="built col">I built all of it: a calibrated gradient-boosted model, a
+    <p class="lede col"> Finding the fraudulent transactions is not the hard part; its deciding what happens next. Meaning in collaboration with the stakeholders you must decide the balance as <strong>you cannot catch more fraud without flagging more genuine payments alongside it</strong>. Flag too few and money walks
+      out of the door. Flag too many and you are interrupting people who did nothing wrong. Potentially impacting client satisfaction. </p>
+    <p class="col"> Because sometimes there is genuinely no difference between a genuine and a fraudulent transaction, no model, for this dataset, can tell them apart perfectly. So I invite you to make that call yourself: work against the model's actual scores, and see exactly what each decision costs! <strong>Drag the controls. This is the actual model, not a demo.</strong></p>
+    <p class="built col">What I build: a calibrated gradient-boosted model, a
       four-band response policy and the cost analysis behind it, from 284,807 real
       payments. On a period it had never seen it flags 64 of the 74 frauds, and the
       honest summary of its accuracy is a range, <b>0.68 to 0.86</b>, rather than a
@@ -397,7 +393,7 @@ a.btn{text-decoration:none;display:inline-block}
         </div>
       </div>
     <div class="cite col" style="margin-top:1.4rem">
-      <details class="explain"><summary>A note on wording</summary><div class="explain-body"><p><strong>A note on wording.</strong> The model <strong>flags</strong> a payment. It does not block anything and it does not decline anything. What a bank then does with a flag, hold the payment, block the card, send a code, telephone the customer, is an operational decision that belongs to the bank, not to the model. So this page says "flag" and "take action" and deliberately stops there.</p></div></details>
+      <details class="explain"><summary>A note on wording</summary><div class="explain-body"><p><strong>A note on wording.</strong> The model <strong>flags</strong> a payment. It does not block anything and it does not decline anything. What a bank then does with a flag, hold the payment, block the card, send a code, telephone the customer, is an operational decision that belongs to the responsible department, not to the model. So this page says "flag" and "take action" and deliberately stops there.</p></div></details>
     </div>
 </div></section>
 
@@ -410,9 +406,9 @@ a.btn{text-decoration:none;display:inline-block}
       <aside class="rail">
         <p class="eyebrow">Provenance</p>
         <p class="fine" style="margin-top:.7rem">Collected by <strong>Worldline</strong> with the <strong>Machine Learning Group at the Université Libre de Bruxelles</strong>.</p>
-        <p class="fine" style="margin-top:.55rem">A public research benchmark — one of the most studied fraud datasets there is, so the results here can be checked against the wider literature.</p>
+        <p class="fine" style="margin-top:.55rem">A public research benchmark and one of the most studied fraud datasets there is, meaningthe results here can be checked against the wider literature.</p>
       </aside>
-      <p>This is not simulated data. It is 284,807 genuine card transactions made by
+      <p>The data has not been synthetically generated. It consists out of 284,807 genuine card transactions made by
         European cardholders over two days in September 2013, collected by Worldline
         and the Machine Learning Group at the Université Libre de Bruxelles, and
         published for research.</p>
@@ -426,7 +422,7 @@ a.btn{text-decoration:none;display:inline-block}
       <div class="fact"><span class="num">0.172%</span>
         <p class="fine">the fraud rate</p></div>
       <div class="fact"><span class="num">1 in 578</span>
-        <p class="fine">how rare that is</p></div>
+        <p class="fine">how rare that is (empirical rate)</p></div>
       <div class="fact"><span class="num">2 days</span>
         <p class="fine">September 2013</p></div>
     </div>
@@ -434,19 +430,16 @@ a.btn{text-decoration:none;display:inline-block}
     <div class="col stack" style="margin-top:1.8rem">
       <h3>You cannot see what anyone bought</h3>
       <aside class="rail">
-        <div class="railstat"><b>28</b><span>columns hidden behind a PCA transform, labelled only <strong>V1–V28</strong> — unreadable by design.</span></div>
-        <div class="railstat" style="margin-top:1.5rem;border-left-color:var(--blue)"><b style="color:var(--blue)">2</b><span>fields kept in the clear: the <strong>amount</strong> and the <strong>time</strong> of each payment.</span></div>
+        <div class="railstat"><b>28</b><span>columns anonymised using a PCA transform, labelled only <strong>V1–V28</strong>;unreadable by design.</span></div>
+        <div class="railstat" style="margin-top:1.5rem;border-left-color:var(--blue)"><b style="color:var(--blue)">2</b><span>fields kept intact: the <strong>amount</strong> and the <strong>time</strong> of each payment.</span></div>
       </aside>
       <p>Payment records are sensitive, so the data was deliberately made
         unidentifiable before release. Only two fields survive in their original form:
         the <strong>amount</strong> of each payment, and the <strong>time</strong> it
         happened, counted in seconds from the first transaction in the file.</p>
       <details class="explain"><summary>What V1 to V28 actually are</summary><div class="explain-body"><p>Everything else, twenty-eight further columns, has been put through a
-        mathematical transformation that scrambles the original details into anonymous
-        numbers called <mark>V1 to V28</mark>. Those numbers still carry the patterns a
-        model needs, but no one can read a merchant, a location or a cardholder back
-        out of them. It is a real constraint rather than a technicality, and it shows up
-        twice on this page: the model can be accurate, but it cannot explain itself in
+        mathematical transformation that, simply put, combine the original features in a way new features emerge with no correlation to each other and are ranked from carrying the most information to the least. They resulted in features from <mark>V1 to V28</mark>.Although carrying information for the model to perform, no one can read, e.g., a merchant, a location or a cardholder back
+        out of them. This is a constraint for interpretability as the model can be accurate, but it cannot explain itself in
         plain language, and there is nothing in the file about who any of these
         customers are.</p></div></details>
     </div>
